@@ -1,0 +1,13 @@
+.board-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  max-width: 360px;
+}
+
+.board {
+  width: 176px;
+  height: 176px;
+  margin: 2px;
+  background-color: rgb(42, 137, 72);
+}
