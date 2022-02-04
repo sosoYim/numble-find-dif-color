@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useLayoutEffect, useReducer } from 'react';
 import './App.css';
 import { Board } from 'components';
 import { reducer, initialState } from './appReducer';
@@ -13,11 +13,11 @@ export function App() {
     if (!e.target.classList.contains('piece')) return;
     isAnswer
       ? dispatch({
-          type: 'NEXT_STAGE',
+          type: 'GO_NEXT_STAGE',
           stage: (state.stage += 1),
           score: Math.pow(state.stage, 3) * state.leftTime,
         })
-      : dispatch({ type: 'DECREASE_LEFTTIME' });
+      : dispatch({ type: 'CHOOSE_WRONG_ANSWER' });
   };
 
   const endGame = () => {
@@ -25,9 +25,13 @@ export function App() {
     dispatch({ type: 'INITIALIZE_GAME' });
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     state.leftTime === 0 && endGame();
   }, [state.leftTime]);
+
+  useEffect(() => {
+    // const clearId = setTimeout(() => dispatch({ type: '' }));
+  }, []);
 
   return (
     <>

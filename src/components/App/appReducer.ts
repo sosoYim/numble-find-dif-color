@@ -13,15 +13,13 @@ export function reducer(state: State, action: Action): State {
       return {
         ...initialState,
       };
-    case 'NEXT_STAGE':
+    case 'GO_NEXT_STAGE':
       return {
         ...state,
         stage: action.stage,
-        // TODO: 왜 2씩 증가?
-        // stage: (state.stage += 1),
         score: action.score,
       };
-    case 'DECREASE_LEFTTIME':
+    case 'CHOOSE_WRONG_ANSWER':
       return {
         ...state,
         // TODO: 차감 시간 상수로 빼기

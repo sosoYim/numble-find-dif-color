@@ -7,6 +7,6 @@ export type State = {
 
 export type Action =
   | { type: 'INITIALIZE_GAME' }
-  | { type: 'NEXT_STAGE'; stage: number; score: number }
-  | { type: 'DECREASE_LEFTTIME' }
+  | { type: 'GO_NEXT_STAGE'; stage: number; score: number }
+  | { type: 'CHOOSE_WRONG_ANSWER' }
   | { type: 'FINISH_GAME' };
