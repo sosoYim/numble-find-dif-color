@@ -1,51 +1,10 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import './App.css';
 import { Board } from 'components';
-
-type State = {
-  stage: number;
-  score: number;
-  leftTime: number;
-};
-
-type Action =
-  | { type: 'INITIALIZE_GAME'; defaultProps: State }
-  | { type: 'NEXT_STAGE'; stage: number; score: number }
-  | { type: 'DECREASE_LEFTTIME' };
-
-function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case 'INITIALIZE_GAME':
-      return {
-        ...action.defaultProps,
-      };
-    case 'NEXT_STAGE':
-      return {
-        ...state,
-        stage: action.stage,
-        // TODO: 왜 2씩 증가?
-        // stage: (state.stage += 1),
-        score: action.score,
-      };
-    case 'DECREASE_LEFTTIME':
-      return {
-        ...state,
-        // TODO: 차감 시간 상수로 빼기
-        leftTime: state.leftTime - 3 > 0 ? state.leftTime - 3 : 0,
-      };
-    default:
-      throw new Error('Wrong action type');
-  }
-}
-
-const defaultProps: State = {
-  stage: 1,
-  score: 0,
-  leftTime: 15,
-};
+import { reducer, initialProps } from './appReducer';
 
 export function App() {
-  const [state, dispatch] = useReducer(reducer, defaultProps);
+  const [state, dispatch] = useReducer(reducer, initialProps);
 
   //React.MouseEvent<HTMLElement>
   //React.SyntheticEvent<HTMLElement>
@@ -60,6 +19,16 @@ export function App() {
         })
       : dispatch({ type: 'DECREASE_LEFTTIME' });
   };
+
+  const endGame = () => {
+    window.alert(`GAME OVER!\n스테이지: ${state.stage}, 점수:${state.score}`);
+    dispatch({ type: 'INITIALIZE_GAME', defaultProps: initialProps });
+  };
+
+  // TODO: FIX 초기값 stage가 2
+  useEffect(() => {
+    state.leftTime === 0 && endGame();
+  }, [state.leftTime]);
 
   return (
     <>
