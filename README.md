@@ -4,6 +4,14 @@
 
 [Numble 소개 페이지 바로가기](https://www.numble.it/45cee9d3-49ad-4f67-9d2a-14607c2eeba7?fbclid=IwAR1zXOrV9E8GbksogWSZk6ynGYfm16CmOzX11_vKPZrl4xDIlOSrDIp7C7Y#c4eaa8bc4ec1492aa0be0fc9ff04d2e2)
 
+## 조건
+
+1. React Framework를 사용할 것
+2. Function Component를 활용할 것
+3. Javascript보다는 Typescript를 활용할 것
+4. 서버에 배포할 것 (Vercel과 같은 서비스를 이용해보세요)
+5. Context, Redux, Mobx, Recoil 등 상태관리 도구를 사용하지 않을 것
+
 ## 요구사항
 
 - [ ] Math.pow(Math.round((stage + 0.5) / 2) + 1, 2)개의 사각형이 표시되며, 그 중 하나만 색깔이 다릅니다.
