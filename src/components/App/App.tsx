@@ -10,8 +10,8 @@ type State = {
 
 type Action =
   | { type: 'INITIALIZE_GAME'; defaultProps: State }
-  | { type: 'NEXT_STAGE' }
-  | { type: 'DECREASE_LEFTTIME'; leftTime: number };
+  | { type: 'NEXT_STAGE'; stage: number }
+  | { type: 'DECREASE_LEFTTIME' };
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -22,12 +22,15 @@ function reducer(state: State, action: Action): State {
     case 'NEXT_STAGE':
       return {
         ...state,
-        stage: (state.stage += 1),
+        stage: action.stage,
+        // TODO: 왜 2씩 증가?
+        // stage: (state.stage += 1),
       };
     case 'DECREASE_LEFTTIME':
       return {
         ...state,
-        leftTime: state.leftTime - action.leftTime,
+        // TODO: 차감 시간 상수로 빼기
+        leftTime: state.leftTime - 3 > 0 ? state.leftTime - 3 : 0,
       };
     default:
       throw new Error('Wrong action type');
@@ -43,13 +46,23 @@ const defaultProps: State = {
 export function App() {
   const [state, dispatch] = useReducer(reducer, defaultProps);
 
+  //React.MouseEvent<HTMLElement>
+  //React.SyntheticEvent<HTMLElement>
+  // TODO: target 도 인식하는 타입 찾기
+  const handleClick = (e: any, isAnswer: any) => {
+    if (!e.target.classList.contains('piece')) return;
+    isAnswer
+      ? dispatch({ type: 'NEXT_STAGE', stage: (state.stage += 1) })
+      : dispatch({ type: 'DECREASE_LEFTTIME' });
+  };
+
   return (
     <>
       <header>
         스테이지: {state.stage}, 남은 시간: {state.leftTime}, 점수:{' '}
         {state.score}
       </header>
-      <Board stage={state.stage} />
+      <Board stage={state.stage} handleClick={handleClick} />
     </>
   );
 }

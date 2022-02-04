@@ -2,5 +2,5 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  max-width: 360px;
+  width: 360px;
 }
