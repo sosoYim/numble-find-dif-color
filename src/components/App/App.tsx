@@ -5,7 +5,6 @@ import { reducer, initialState } from './appReducer';
 
 export function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   //React.MouseEvent<HTMLElement>
   //React.SyntheticEvent<HTMLElement>
   // TODO: target 도 인식하는 타입 찾기
@@ -25,13 +24,15 @@ export function App() {
     dispatch({ type: 'INITIALIZE_GAME' });
   };
 
-  useLayoutEffect(() => {
-    state.leftTime === 0 && endGame();
-  }, [state.leftTime]);
-
   useEffect(() => {
-    // const clearId = setTimeout(() => dispatch({ type: '' }));
-  }, []);
+    const clearId = setInterval(
+      () =>
+        dispatch({ type: 'COUNTING_LEFTTIME', leftTime: state.leftTime - 1 }),
+      1000,
+    );
+    state.leftTime === 0 && endGame();
+    return () => clearInterval(clearId);
+  }, [state.leftTime]);
 
   return (
     <>
