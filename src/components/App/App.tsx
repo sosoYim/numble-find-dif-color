@@ -1,10 +1,10 @@
 import React, { useEffect, useReducer } from 'react';
 import './App.css';
 import { Board } from 'components';
-import { reducer, initialProps } from './appReducer';
+import { reducer, initialState } from './appReducer';
 
 export function App() {
-  const [state, dispatch] = useReducer(reducer, initialProps);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   //React.MouseEvent<HTMLElement>
   //React.SyntheticEvent<HTMLElement>
@@ -22,10 +22,9 @@ export function App() {
 
   const endGame = () => {
     window.alert(`GAME OVER!\n스테이지: ${state.stage}, 점수:${state.score}`);
-    dispatch({ type: 'INITIALIZE_GAME', defaultProps: initialProps });
+    dispatch({ type: 'INITIALIZE_GAME' });
   };
 
-  // TODO: FIX 초기값 stage가 2
   useEffect(() => {
     state.leftTime === 0 && endGame();
   }, [state.leftTime]);

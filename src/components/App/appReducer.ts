@@ -1,6 +1,6 @@
 import { State, Action } from './appReducer.types';
 
-export const initialProps: State = {
+export const initialState: State = {
   stage: 1,
   score: 0,
   leftTime: 15,
@@ -11,7 +11,7 @@ export function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'INITIALIZE_GAME':
       return {
-        ...action.defaultProps,
+        ...initialState,
       };
     case 'NEXT_STAGE':
       return {

@@ -6,7 +6,7 @@ export type State = {
 };
 
 export type Action =
-  | { type: 'INITIALIZE_GAME'; defaultProps: State }
+  | { type: 'INITIALIZE_GAME' }
   | { type: 'NEXT_STAGE'; stage: number; score: number }
   | { type: 'DECREASE_LEFTTIME' }
   | { type: 'FINISH_GAME' };
