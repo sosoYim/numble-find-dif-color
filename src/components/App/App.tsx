@@ -10,7 +10,7 @@ type State = {
 
 type Action =
   | { type: 'INITIALIZE_GAME'; defaultProps: State }
-  | { type: 'NEXT_STAGE'; stage: number }
+  | { type: 'NEXT_STAGE'; stage: number; score: number }
   | { type: 'DECREASE_LEFTTIME' };
 
 function reducer(state: State, action: Action): State {
@@ -25,6 +25,7 @@ function reducer(state: State, action: Action): State {
         stage: action.stage,
         // TODO: 왜 2씩 증가?
         // stage: (state.stage += 1),
+        score: action.score,
       };
     case 'DECREASE_LEFTTIME':
       return {
@@ -52,7 +53,11 @@ export function App() {
   const handleClick = (e: any, isAnswer: any) => {
     if (!e.target.classList.contains('piece')) return;
     isAnswer
-      ? dispatch({ type: 'NEXT_STAGE', stage: (state.stage += 1) })
+      ? dispatch({
+          type: 'NEXT_STAGE',
+          stage: (state.stage += 1),
+          score: Math.pow(state.stage, 3) * state.leftTime,
+        })
       : dispatch({ type: 'DECREASE_LEFTTIME' });
   };
 
