@@ -12,22 +12,20 @@ export function Board({
 }: BoardProps) {
   const [pieces, setPieces] = useState<JSX.Element[] | []>([]);
   const [answerIndex, setAnswerIndex] = useState<undefined | number>();
+  const [pieceCountByRow, setPieceCountByRow] = useState<undefined | number>();
 
   useLayoutEffect(() => {
     const pieceCount = Math.pow(Math.round((stage + 0.5) / 2) + 1, 2);
-    console.log({ piecesCount: pieceCount });
     const tempAnswerIndex = getRandomInt(pieceCount as number, 0);
     setAnswerIndex(tempAnswerIndex);
-    const [normalRGBCode, answerRGBCode] = getRandomColorAndAnswerColor(stage);
+    setPieceCountByRow(Math.sqrt(pieceCount));
 
-    const rowPieceCount = Math.sqrt(pieceCount);
-    const pieceSize = Math.floor(size / rowPieceCount) - 4 * rowPieceCount;
+    const [normalRGBCode, answerRGBCode] = getRandomColorAndAnswerColor(stage);
 
     setPieces(
       Array.from({ length: pieceCount }, (_, i) => (
         <Piece
           key={i}
-          size={pieceSize}
           backgroundColor={
             i === tempAnswerIndex ? answerRGBCode : normalRGBCode
           }
@@ -39,7 +37,11 @@ export function Board({
   return (
     <div
       className="board"
-      style={{ width: `${size}px`, height: `${size}px` }}
+      style={{
+        width: `${size}px`,
+        height: `${size}px`,
+        gridTemplateColumns: `repeat(${pieceCountByRow}, 1fr)`,
+      }}
       onClick={(e: any) =>
         handleClick(
           e,

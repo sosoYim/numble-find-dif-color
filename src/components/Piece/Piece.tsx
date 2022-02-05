@@ -1,22 +1,13 @@
 import React from 'react';
-import './Piece.css';
 import { PieceProps } from './Piece.types';
 
-export function Piece({
-  backgroundColor,
-  size = 50,
-  ...restProps
-}: PieceProps) {
-  console.log({ size });
+export function Piece({ backgroundColor }: PieceProps) {
   return (
     <button
       className="piece"
       style={{
-        width: `${size}px`,
-        height: `${size}px`,
         backgroundColor: `${backgroundColor}`,
       }}
-      {...restProps}
     ></button>
   );
 }
