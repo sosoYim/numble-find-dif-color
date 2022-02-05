@@ -13,8 +13,9 @@ export function Board({
   const [pieces, setPieces] = useState<JSX.Element[] | []>([]);
   const [answerIndex, setAnswerIndex] = useState<undefined | number>();
   const [pieceCountByRow, setPieceCountByRow] = useState<undefined | number>();
-
+  console.log('outside');
   useLayoutEffect(() => {
+    console.log('inside');
     const pieceCount = Math.pow(Math.round((stage + 0.5) / 2) + 1, 2);
     const tempAnswerIndex = getRandomInt(pieceCount as number, 0);
     setAnswerIndex(tempAnswerIndex);
@@ -49,6 +50,7 @@ export function Board({
         )
       }
     >
+      {console.log('return')}
       {pieces}
     </div>
   );

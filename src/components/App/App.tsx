@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useMemo, useReducer } from 'react';
 import './App.css';
 import { Board, Header } from 'components';
 import { reducer, initialGameState } from './appReducer';
@@ -37,14 +37,22 @@ export function App() {
     return () => clearInterval(clearId);
   }, [state.leftTime]);
 
-  return (
-    <>
-      <Header state={state} />
+  // Only to prevent rerendering
+  const board = useMemo(
+    () => (
       <Board
         stage={state.stage}
         isGaming={state.isGaming}
         handleClick={handleClick}
       />
+    ),
+    [state.stage, state.isGaming],
+  );
+
+  return (
+    <>
+      <Header state={state} />
+      {board}
     </>
   );
 }
