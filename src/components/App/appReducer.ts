@@ -4,6 +4,7 @@ export const initialState: State = {
   stage: 1,
   score: 0,
   leftTime: 15,
+  isGaming: true,
 };
 
 export function reducer(state: State, action: Action): State {
@@ -14,6 +15,7 @@ export function reducer(state: State, action: Action): State {
       };
     case 'GO_NEXT_STAGE':
       return {
+        ...state,
         stage: action.stage,
         score: action.score,
         leftTime: initialState.leftTime,
@@ -28,6 +30,11 @@ export function reducer(state: State, action: Action): State {
       return {
         ...state,
         leftTime: action.leftTime,
+      };
+    case 'FINISH_GAME':
+      return {
+        ...state,
+        isGaming: false,
       };
     default:
       throw new Error('Wrong action type');
