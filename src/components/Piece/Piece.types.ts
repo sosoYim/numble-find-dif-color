@@ -1,3 +1,3 @@
-export interface PieceType {
+export interface PieceProps {
   backgroundColor: string;
 }

@@ -2,9 +2,9 @@ import { getRandomInt } from './index';
 /**
  *
  * @param stage
- * @returns [normalRGBCode, differentRGBCode]
+ * @returns [normalRGBCode, answerRGBCode]
  */
-export const getRandomColorAndDifferentColor = (stage: number) => {
+export const getRandomColorAndAnswerColor = (stage: number) => {
   // 차이값과의 차가 0보다 적은 경우 더해주기 위해 245까지만
   const [r, g, b] = [
     getRandomInt(245, 10),
@@ -21,6 +21,6 @@ export const getRandomColorAndDifferentColor = (stage: number) => {
     b - colorDifference,
   ];
   const normalRGBCode = `rgb(${r},${g},${b} )`;
-  const differentRGBCode = `rgb(${difR},${difG},${difB} )`;
-  return [normalRGBCode, differentRGBCode];
+  const answerRGBCode = `rgb(${difR},${difG},${difB} )`;
+  return [normalRGBCode, answerRGBCode];
 };

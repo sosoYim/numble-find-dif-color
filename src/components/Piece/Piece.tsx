@@ -1,8 +1,8 @@
 import React from 'react';
 import './Piece.css';
-import { PieceType } from './Piece.types';
+import { PieceProps } from './Piece.types';
 
-export function Piece({ backgroundColor, ...restProps }: PieceType) {
+export function Piece({ backgroundColor, ...restProps }: PieceProps) {
   return (
     <div
       className="piece"
