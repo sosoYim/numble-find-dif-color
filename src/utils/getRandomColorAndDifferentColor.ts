@@ -1,26 +1,41 @@
 import { getRandomInt } from './index';
+
+export interface getRandomDifferentColorProps {
+  baseColor: number;
+  stage: number;
+  maxDifference?: number;
+}
+
+export const getRandomDifferentColor = (
+  baseColor: number,
+  stage: number,
+  maxDifference = 25,
+) => {
+  const isPlus = Math.round(Math.random() * 1 + 0) === 1;
+  const difference = maxDifference - Math.floor(stage + 1) / 3;
+  return (baseColor < 255 - difference && isPlus) || baseColor < difference
+    ? baseColor + difference
+    : baseColor - difference;
+};
+
 /**
  *
  * @param stage
  * @returns [normalRGBCode, answerRGBCode]
  */
 export const getRandomColorAndAnswerColor = (stage: number) => {
-  // 차이값과의 차가 0보다 적은 경우 더해주기 위해 245까지만
   const [r, g, b] = [
-    getRandomInt(245, 10),
-    getRandomInt(245, 10),
-    getRandomInt(245, 10),
+    getRandomInt(255, 0),
+    getRandomInt(255, 0),
+    getRandomInt(255, 0),
   ];
 
-  const colorDifference = 100 - stage * 10 > 5 ? 100 - stage * 5 : 5;
-
-  // 같은 방향으로 증가 혹은 감소하면 색 차이가 덜하다...?
   const [difR, difG, difB] = [
-    r - colorDifference,
-    stage > 4 ? g - colorDifference : g + colorDifference,
-    b - colorDifference,
+    getRandomDifferentColor(r, stage),
+    getRandomDifferentColor(g, stage),
+    getRandomDifferentColor(b, stage),
   ];
-  const normalRGBCode = `rgb(${r},${g},${b} )`;
-  const answerRGBCode = `rgb(${difR},${difG},${difB} )`;
+  const normalRGBCode = `rgb(${r},${g},${b})`;
+  const answerRGBCode = `rgb(${difR},${difG},${difB})`;
   return [normalRGBCode, answerRGBCode];
 };
