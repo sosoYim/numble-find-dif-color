@@ -1,10 +1,10 @@
 import React, { useEffect, useReducer } from 'react';
 import './App.css';
 import { Board, Header } from 'components';
-import { reducer, initialState } from './appReducer';
+import { reducer, initialGameState } from './appReducer';
 
 export function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialGameState);
   //React.MouseEvent<HTMLElement>
   //React.SyntheticEvent<HTMLElement>
   // TODO: target 도 인식하는 타입 찾기

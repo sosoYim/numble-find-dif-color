@@ -1,9 +1,9 @@
-export type State = {
+export interface GameState {
   stage: number;
   score: number;
   leftTime: number;
   isGaming: boolean;
-};
+}
 
 export type Action =
   | { type: 'INITIALIZE_GAME' }

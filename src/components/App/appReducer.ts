@@ -1,24 +1,24 @@
-import { State, Action } from './appReducer.types';
+import { GameState, Action } from './appReducer.types';
 
-export const initialState: State = {
+export const initialGameState: GameState = {
   stage: 1,
   score: 0,
   leftTime: 15,
   isGaming: true,
 };
 
-export function reducer(state: State, action: Action): State {
+export function reducer(state: GameState, action: Action): GameState {
   switch (action.type) {
     case 'INITIALIZE_GAME':
       return {
-        ...initialState,
+        ...initialGameState,
       };
     case 'GO_NEXT_STAGE':
       return {
         ...state,
         stage: action.stage,
         score: action.score,
-        leftTime: initialState.leftTime,
+        leftTime: initialGameState.leftTime,
       };
     case 'CHOOSE_WRONG_ANSWER':
       return {
