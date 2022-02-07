@@ -1,5 +1,5 @@
-import { GameState } from 'components/App/appReducer.types';
-
 export type HeaderProps = {
-  state: GameState;
+  stage: number;
+  leftTime: number;
+  score: number;
 };
