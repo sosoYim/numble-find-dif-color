@@ -5,9 +5,9 @@ export interface GameState {
   isGaming: boolean;
 }
 
-export type Action =
+export type GameAction =
   | { type: 'INITIALIZE_GAME' }
   | { type: 'GO_NEXT_STAGE'; stage: number; score: number }
   | { type: 'CHOOSE_WRONG_ANSWER' }
-  | { type: 'COUNTING_LEFTTIME'; leftTime: number }
+  | { type: 'COUNTING_LEFTTIME' }
   | { type: 'FINISH_GAME' };

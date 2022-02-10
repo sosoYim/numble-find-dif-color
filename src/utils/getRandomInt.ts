@@ -1,9 +1,3 @@
-/**
- *
- * @param max
- * @param min
- * @returns randomInt
- */
-export const getRandomInt = (max: number, min: number) => {
+export const getRandomInt = ({ max = 0, min = 0 }) => {
   return Math.floor(Math.random() * max + min);
 };

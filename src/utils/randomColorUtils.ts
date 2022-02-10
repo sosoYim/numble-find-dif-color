@@ -12,23 +12,17 @@ export const getRandomDifferentColor = (
   maxDifference = 25,
 ) => {
   const isPlus = Math.round(Math.random() * 1 + 0) === 1;
-  // TODO: 검증 필요. maxDifference를 넘어서는 stage 방어 해야하나?
   const difference = maxDifference - Math.floor(stage + 1) / 3;
   return (baseColor < 255 - difference && isPlus) || baseColor < difference
     ? baseColor + difference
     : baseColor - difference;
 };
 
-/**
- *
- * @param stage
- * @returns [normalRGBCode, answerRGBCode]
- */
 export const getRandomColorAndAnswerColor = (stage: number) => {
   const [r, g, b] = [
-    getRandomInt(255, 0),
-    getRandomInt(255, 0),
-    getRandomInt(255, 0),
+    getRandomInt({ max: 255, min: 0 }),
+    getRandomInt({ max: 255, min: 0 }),
+    getRandomInt({ max: 255, min: 0 }),
   ];
 
   const [difR, difG, difB] = [
@@ -38,5 +32,5 @@ export const getRandomColorAndAnswerColor = (stage: number) => {
   ];
   const normalRGBCode = `rgb(${r},${g},${b})`;
   const answerRGBCode = `rgb(${difR},${difG},${difB})`;
-  return [normalRGBCode, answerRGBCode];
+  return { normalRGBCode, answerRGBCode };
 };

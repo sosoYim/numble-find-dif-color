@@ -1,8 +1,8 @@
-import React, { useLayoutEffect, useEffect, useState } from 'react';
+import React from 'react';
 import './Board.css';
 import { BoardProps } from './Board.types';
 import { Piece } from 'components';
-import { getRandomColorAndAnswerColor, getRandomInt } from 'utils';
+import { useBoard } from 'hooks/useBoard';
 
 export function Board({
   stage,
@@ -10,37 +10,29 @@ export function Board({
   handleClick,
   size = 360,
 }: BoardProps) {
-  const [pieces, setPieces] = useState<JSX.Element[] | []>([]);
-  const [answerIndex, setAnswerIndex] = useState<undefined | number>();
-  const [pieceCountByRow, setPieceCountByRow] = useState<undefined | number>();
-  // console.log('outside');
-  useLayoutEffect(() => {
-    // console.log('inside');
-    const pieceCount = Math.pow(Math.round((stage + 0.5) / 2) + 1, 2);
-    const tempAnswerIndex = getRandomInt(pieceCount as number, 0);
-    setAnswerIndex(tempAnswerIndex);
-    setPieceCountByRow(Math.sqrt(pieceCount));
+  const {
+    boardState: {
+      pieceCount,
+      pieceCountByRow,
+      answerIndex,
+      answerRGBCode,
+      normalRGBCode,
+    },
+  } = useBoard({ stage, isGaming });
 
-    const [normalRGBCode, answerRGBCode] = getRandomColorAndAnswerColor(stage);
-
-    setPieces(
-      Array.from({ length: pieceCount }, (_, i) => (
-        <Piece
-          key={i}
-          backgroundColor={
-            i === tempAnswerIndex ? answerRGBCode : normalRGBCode
-          }
-        />
-      )),
-    );
-  }, [stage, isGaming]);
+  const pieces = Array.from({ length: pieceCount }, (_, i) => (
+    <Piece
+      key={i}
+      backgroundColor={i === answerIndex ? answerRGBCode : normalRGBCode}
+    />
+  ));
 
   return (
     <div
       className="board"
       style={{
-        width: `${size}px`,
-        height: `${size}px`,
+        width: size,
+        height: size,
         gridTemplateColumns: `repeat(${pieceCountByRow}, 1fr)`,
       }}
       onClick={(e: any) =>
@@ -50,7 +42,6 @@ export function Board({
         )
       }
     >
-      {/* {console.log('return')} */}
       {pieces}
     </div>
   );
