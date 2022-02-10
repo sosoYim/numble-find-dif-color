@@ -22,10 +22,12 @@ export function useGame({ reducer = gameReducer } = {}) {
 
   useEffect(() => {
     if (gameState.isGaming) return;
-    window.alert(
-      `GAME OVER!\n스테이지: ${gameState.stage}, 점수:${gameState.score}`,
-    );
-    initializeGame();
+    setTimeout(() => {
+      window.alert(
+        `GAME OVER!\n스테이지: ${gameState.stage}, 점수:${gameState.score}`,
+      );
+      initializeGame();
+    }, 40);
   }, [gameState.isGaming]);
 
   const handleClick = (
