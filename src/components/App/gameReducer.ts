@@ -1,4 +1,4 @@
-import { GameState, Action } from './appReducer.types';
+import { GameState, GameAction } from './gameReducer.types';
 
 export const initialGameState: GameState = {
   stage: 1,
@@ -7,7 +7,7 @@ export const initialGameState: GameState = {
   isGaming: true,
 };
 
-export function reducer(state: GameState, action: Action): GameState {
+export function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
     case 'INITIALIZE_GAME':
       return {
@@ -29,7 +29,8 @@ export function reducer(state: GameState, action: Action): GameState {
     case 'COUNTING_LEFTTIME':
       return {
         ...state,
-        leftTime: action.leftTime,
+        // leftTime: action.leftTime,
+        leftTime: state.leftTime > 1 ? state.leftTime - 1 : 0,
       };
     case 'FINISH_GAME':
       return {
@@ -37,6 +38,6 @@ export function reducer(state: GameState, action: Action): GameState {
         isGaming: false,
       };
     default:
-      throw new Error('Wrong action type');
+      throw new Error('Wrong GameAction type');
   }
 }

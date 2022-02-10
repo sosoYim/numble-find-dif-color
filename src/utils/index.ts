@@ -1,2 +1,3 @@
 export * from './getRandomInt';
-export * from './getRandomColorAndDifferentColor';
+export * from './randomColorUtils';
+export * from './boardUtils';
