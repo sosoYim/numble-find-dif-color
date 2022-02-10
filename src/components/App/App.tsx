@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Board, Header } from 'components';
-import { useGame } from 'hooks/useGame';
+import { useGame } from 'hooks';
 
 export function App() {
   const {

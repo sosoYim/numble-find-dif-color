@@ -2,7 +2,7 @@ import React from 'react';
 import './Board.css';
 import { BoardProps } from './Board.types';
 import { Piece } from 'components';
-import { useBoard } from 'hooks/useBoard';
+import { useBoard } from 'hooks';
 
 export function Board({
   stage,
