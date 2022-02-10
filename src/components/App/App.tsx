@@ -1,16 +1,18 @@
 import React from 'react';
 import './App.css';
+import { Board, Header } from 'components';
+import { useGame } from 'hooks';
 
 export function App() {
+  const {
+    gameState: { leftTime, isGaming, stage, score },
+    handleClick,
+  } = useGame();
+
   return (
     <>
-      <header>스테이지: 1, 남은 시간: 0, 점수: 0</header>
-      <div className="board-wrapper">
-        <div className="board"></div>
-        <div className="board"></div>
-        <div className="board"></div>
-        <div className="board"></div>
-      </div>
+      <Header stage={stage} leftTime={leftTime} score={score} />
+      <Board stage={stage} isGaming={isGaming} handleClick={handleClick} />
     </>
   );
 }
