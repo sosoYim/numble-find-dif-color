@@ -44,11 +44,6 @@ export function useGame({ reducer = gameReducer } = {}) {
 
   return {
     gameState,
-    initializeGame,
-    goNextStage,
-    chooseWrongAnswer,
-    countingLeftTime,
-    finishGame,
     handleClick,
   };
 }

@@ -11,12 +11,12 @@ export function useBoard({
 
   const renderNextStage = () =>
     dispatch({ type: 'INITIALIZE_BOARD_BY_STAGE', stage });
-  const initializeBoard = () => dispatch({ type: 'INITIALIZE_BOARD' });
+  // const initializeBoard = () => dispatch({ type: 'INITIALIZE_BOARD' });
 
   useLayoutEffect(() => {
     if (!isGaming || stage === 0) return;
     renderNextStage();
   }, [stage, isGaming]);
 
-  return { boardState, renderNextStage, initializeBoard };
+  return { boardState };
 }
