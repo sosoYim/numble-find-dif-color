@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import './App.css';
 import { Board } from 'containers';
 import { Header } from 'components';
@@ -10,14 +10,21 @@ export function App() {
     handleClickAnswer,
   } = useGame();
 
-  return (
-    <>
-      <Header stage={stage} leftTime={leftTime} score={score} />
+  const board = useMemo(
+    () => (
       <Board
         stage={stage}
         isGaming={isGaming}
         handleClickAnswer={handleClickAnswer}
       />
+    ),
+    [],
+  );
+
+  return (
+    <>
+      <Header stage={stage} leftTime={leftTime} score={score} />
+      {board}
     </>
   );
 }
