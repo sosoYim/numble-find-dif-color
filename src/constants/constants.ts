@@ -1,4 +1,6 @@
-export const GAME = {
+import { CONST_GAME } from './constants.types';
+
+export const GAME: CONST_GAME = {
   INITIAL_STAGE: 1,
   INITIAL_SCORE: 0,
   INITIAL_LEFTTIME: 15,
