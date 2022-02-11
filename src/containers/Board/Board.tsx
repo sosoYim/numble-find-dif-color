@@ -7,7 +7,7 @@ import { useBoard } from 'hooks';
 export function Board({
   stage,
   isGaming,
-  handleClick,
+  handleClickAnswer,
   size = 360,
 }: BoardProps) {
   const {
@@ -15,15 +15,15 @@ export function Board({
       pieceCount,
       pieceCountByRow,
       answerIndex,
-      answerRGBCode,
-      normalRGBCode,
+      answerData,
+      normalData,
     },
   } = useBoard({ stage, isGaming });
 
   const pieces = Array.from({ length: pieceCount }, (_, i) => (
     <Piece
       key={i}
-      backgroundColor={i === answerIndex ? answerRGBCode : normalRGBCode}
+      backgroundColor={i === answerIndex ? answerData : normalData}
     />
   ));
 
@@ -36,7 +36,7 @@ export function Board({
         gridTemplateColumns: `repeat(${pieceCountByRow}, 1fr)`,
       }}
       onClick={(e: any) =>
-        handleClick(
+        handleClickAnswer(
           e,
           e.target === e.currentTarget.children[answerIndex as number],
         )

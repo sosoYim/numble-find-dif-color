@@ -1,6 +1,6 @@
 import { useLayoutEffect, useReducer } from 'react';
 
-import { boardReducer, initialBoardState } from 'components/Board/boardReducer';
+import { boardReducer, initialBoardState } from 'containers/Board/boardReducer';
 
 export function useBoard({
   stage = 0,

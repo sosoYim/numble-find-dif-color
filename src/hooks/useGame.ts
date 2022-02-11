@@ -1,5 +1,5 @@
 import { useLayoutEffect, useReducer, useEffect } from 'react';
-import { gameReducer, initialGameState } from 'components/App/gameReducer';
+import { gameReducer, initialGameState } from 'containers/Game/gameReducer';
 
 export function useGame({ reducer = gameReducer } = {}) {
   const [gameState, dispatch] = useReducer(reducer, initialGameState);
@@ -29,7 +29,7 @@ export function useGame({ reducer = gameReducer } = {}) {
     }, 40);
   }, [gameState.isGaming]);
 
-  const handleClick = (
+  const handleClickAnswer = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     isAnswer: boolean,
   ) => {
@@ -45,6 +45,6 @@ export function useGame({ reducer = gameReducer } = {}) {
 
   return {
     gameState,
-    handleClick,
+    handleClickAnswer,
   };
 }

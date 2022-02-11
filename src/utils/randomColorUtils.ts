@@ -30,7 +30,7 @@ export const getRandomColorAndAnswerColor = (stage: number) => {
     getRandomDifferentColor(g, stage),
     getRandomDifferentColor(b, stage),
   ];
-  const normalRGBCode = `rgb(${r},${g},${b})`;
-  const answerRGBCode = `rgb(${difR},${difG},${difB})`;
-  return { normalRGBCode, answerRGBCode };
+  const normalData = `rgb(${r},${g},${b})`;
+  const answerData = `rgb(${difR},${difG},${difB})`;
+  return { normalData, answerData };
 };

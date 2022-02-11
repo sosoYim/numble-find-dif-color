@@ -1,7 +1,7 @@
 export interface BoardProps {
   stage: number;
   isGaming: boolean;
-  handleClick?: (
+  handleClickAnswer: (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     isAnswer: boolean,
   ) => void;
