@@ -35,7 +35,7 @@ export function Board({
         height: size,
         gridTemplateColumns: `repeat(${pieceCountByRow}, 1fr)`,
       }}
-      onClick={(e: any) =>
+      onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) =>
         handleClickAnswer(
           e,
           e.target === e.currentTarget.children[answerIndex as number],
