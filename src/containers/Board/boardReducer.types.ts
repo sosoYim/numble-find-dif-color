@@ -2,8 +2,8 @@ export interface BoardState {
   pieceCount: number;
   pieceCountByRow: number;
   answerIndex: number;
-  normalRGBCode: string;
-  answerRGBCode: string;
+  normalData: string;
+  answerData: string;
 }
 
 export type BoardAction =

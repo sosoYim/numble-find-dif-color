@@ -1,9 +1,9 @@
 import { GameState, GameAction } from './gameReducer.types';
-
+import { GAME } from 'constants/constants';
 export const initialGameState: GameState = {
-  stage: 1,
-  score: 0,
-  leftTime: 15,
+  stage: GAME.INITIAL_STAGE,
+  score: GAME.INITIAL_SCORE,
+  leftTime: GAME.INITIAL_LEFTTIME,
   isGaming: true,
 };
 
@@ -17,20 +17,24 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       return {
         ...state,
         stage: action.stage,
-        score: action.score,
+        score: state.score + action.score,
         leftTime: initialGameState.leftTime,
       };
     case 'CHOOSE_WRONG_ANSWER':
       return {
         ...state,
-        // TODO: 차감 시간 상수로 빼기
-        leftTime: state.leftTime - 3 > 0 ? state.leftTime - 3 : 0,
+        leftTime:
+          state.leftTime - GAME.DEDUCT_LEFTTIME_WRONG_ANSWER > GAME.MIN_LEFTTIME
+            ? state.leftTime - GAME.DEDUCT_LEFTTIME_WRONG_ANSWER
+            : GAME.MIN_LEFTTIME,
       };
     case 'COUNTING_LEFTTIME':
       return {
         ...state,
-        // leftTime: action.leftTime,
-        leftTime: state.leftTime > 1 ? state.leftTime - 1 : 0,
+        leftTime:
+          state.leftTime > GAME.DEDUCT_LEFTTIME
+            ? state.leftTime - GAME.DEDUCT_LEFTTIME
+            : GAME.MIN_LEFTTIME,
       };
     case 'FINISH_GAME':
       return {

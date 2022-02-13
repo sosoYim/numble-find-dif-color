@@ -32,5 +32,5 @@ export const getRandomColorAndAnswerColor = (stage: number) => {
   ];
   const normalRGBCode = `rgb(${r},${g},${b})`;
   const answerRGBCode = `rgb(${difR},${difG},${difB})`;
-  return { normalRGBCode, answerRGBCode };
+  return { normalData: normalRGBCode, answerData: answerRGBCode };
 };

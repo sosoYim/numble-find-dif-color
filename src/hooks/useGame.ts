@@ -1,12 +1,11 @@
 import { useLayoutEffect, useReducer, useEffect } from 'react';
-import { gameReducer, initialGameState } from 'components/App/gameReducer';
+import { gameReducer, initialGameState } from 'containers/Game/gameReducer';
 
 export function useGame({ reducer = gameReducer } = {}) {
   const [gameState, dispatch] = useReducer(reducer, initialGameState);
 
   const initializeGame = () => dispatch({ type: 'INITIALIZE_GAME' });
-  // TODO: 액션 타입 지정
-  const goNextStage = ({ stage = 0, score = 0 }) =>
+  const goNextStage = ({ stage, score }: { stage: number; score: number }) =>
     dispatch({ type: 'GO_NEXT_STAGE', stage: stage, score: score });
   const chooseWrongAnswer = () => dispatch({ type: 'CHOOSE_WRONG_ANSWER' });
   const countingLeftTime = () => dispatch({ type: 'COUNTING_LEFTTIME' });
@@ -30,7 +29,7 @@ export function useGame({ reducer = gameReducer } = {}) {
     }, 40);
   }, [gameState.isGaming]);
 
-  const handleClick = (
+  const handleClickAnswer = (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
     isAnswer: boolean,
   ) => {
@@ -46,6 +45,6 @@ export function useGame({ reducer = gameReducer } = {}) {
 
   return {
     gameState,
-    handleClick,
+    handleClickAnswer,
   };
 }

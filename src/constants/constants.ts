@@ -1,0 +1,10 @@
+import { CONST_GAME } from './constants.types';
+
+export const GAME: CONST_GAME = {
+  INITIAL_STAGE: 1,
+  INITIAL_SCORE: 0,
+  INITIAL_LEFTTIME: 15,
+  MIN_LEFTTIME: 0,
+  DEDUCT_LEFTTIME: 1,
+  DEDUCT_LEFTTIME_WRONG_ANSWER: 3,
+};
