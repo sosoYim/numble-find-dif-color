@@ -17,7 +17,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       return {
         ...state,
         stage: action.stage,
-        score: action.score,
+        score: state.score + action.score,
         leftTime: initialGameState.leftTime,
       };
     case 'CHOOSE_WRONG_ANSWER':

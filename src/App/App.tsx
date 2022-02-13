@@ -10,21 +10,14 @@ export function App() {
     handleClickAnswer,
   } = useGame();
 
-  const board = useMemo(
-    () => (
+  return (
+    <>
+      <Header stage={stage} leftTime={leftTime} score={score} />
       <Board
         stage={stage}
         isGaming={isGaming}
         handleClickAnswer={handleClickAnswer}
       />
-    ),
-    [],
-  );
-
-  return (
-    <>
-      <Header stage={stage} leftTime={leftTime} score={score} />
-      {board}
     </>
   );
 }
